@@ -32,7 +32,7 @@ $movies = [
 </head>
 <body>
     
-<h1>Daftar Mahasiswa</h1>
+<h1>List Movies</h1>
 
 <?php foreach($movies as $movie) : ?>
     <ul>
