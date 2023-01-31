@@ -1,21 +1,15 @@
-<?php
-// pengulangan pada array
-// for / foreach
-$angka = [3,2,5,5,7,10,1];
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pengulangan Array</title>
+    <title>Latihan 1</title>
     <style>
         .kotak {
             width: 50px;
             height: 50px;
-            background-color: salmon;
+            background-color: blue;
             text-align: center;
             line-height: 50px;
             margin: 3px;
@@ -32,23 +26,22 @@ $angka = [3,2,5,5,7,10,1];
     </style>
 </head>
 <body>
-    
-<!-- count => untuk menghitung ada berapa -->
-<?php for($i = 0; $i < count($angka); $i++) { ?> 
-    <div class="kotak"><?php echo $angka[$i]; ?></div>                  
-<?php } ?>
 
-<div class="clear"></div>
+<?php 
+$angka = [
+    [1,2,3],
+    [4,5,6],
+    [7,8,9]
+    ]
+?>
 
-<?php foreach( $angka as $a ) { ?>
-    <div class="kotak"><?php echo $a; ?></div>
-<?php } ?>
-
-<div class="clear"></div>
-
-<?php foreach( $angka as $a ) : ?>
-    <div class="kotak"><?= $a; ?></div>
+<?php foreach($angka as $a) : ?>
+    <?php foreach($a as $b) : ?>
+        <div class="kotak"><?= $b; ?></div>
+    <?php endforeach; ?>
+    <div class="clear"></div>
 <?php endforeach; ?>
-    
+
+
 </body>
 </html>
