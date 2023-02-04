@@ -1,3 +1,12 @@
+<?php
+
+require 'functions.php';
+
+$mahasiswa = query("SELECT * FROM mahasiswa");
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +30,25 @@
         <th>Jurusan</th>
     </tr>
 
+    <?php $i = 1 ?>
+    <?php foreach($mahasiswa as $row) : ?>
+        
+        <tr>
+            <td><?= $i ?></td>
+            <td>
+                <a href="">ubah</a> |
+                <a href="">hapus</a>
+            </td>
+            <td><img src="images/img.png" width="50"></td>
+            <td><?= $row["nrp"] ?></td>
+            <td><?= $row["nama"] ?></td>
+            <td><?= $row["email"] ?></td>
+            <td><?= $row["jurusan"] ?></td>
+        </tr>
+
+    <?php $i++ ?>
+    <?php endforeach; ?>
+    
 </table>
     
 </body>
