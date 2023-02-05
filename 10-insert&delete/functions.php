@@ -34,4 +34,14 @@ function tambah($data) {
     return mysqli_affected_rows($connect);
 }
 
+
+function delete($id) {
+    global $connect;
+    mysqli_query($connect, "DELETE FROM mahasiswa WHERE id = $id");
+
+    return mysqli_affected_rows($connect);
+}
+
+
+
 ?>
