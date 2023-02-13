@@ -44,12 +44,13 @@ $dokumentasi = query("SELECT * FROM surat");
             <td><?= $row["tag"]; ?></td>
             <td><?= $row["dokumen"]; ?></td>
             <td>
-                <a href="delete.php?id=<?= $row["id"]; ?>" onclick="return confirm('yakin?')">hapus</a>
+                <a href="delete.php?id=<?= $row["id"]; ?>" onclick="return confirm('yakin?')">hapus</a> |
+                <a href="update.php?id=<?= $row["id"]; ?>">ubah</a>
             </td>
         </tr>
         <?php $i++ ?>
         <?php endforeach; ?>
-                
+
     </table>    
 </body>
 </html>

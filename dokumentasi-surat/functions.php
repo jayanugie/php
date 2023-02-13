@@ -24,15 +24,65 @@ function create($data) {
     $keterangan = htmlspecialchars($data["keterangan"]);
     $tag = htmlspecialchars($data["tag"]);
 
-    $directory = "berkas/";
-    $dokumen = $_FILES['dokumen']['name'];
-    move_uploaded_file($_FILES['dokumen']['tmp_name'], $directory.$dokumen);
+    // upload gambar
+    $dokumen = upload();
+    if (!$dokumen) {
+        return false;
+    }
+
     
     $query = "INSERT INTO surat VALUES ('', '$tanggal_surat', '$tanggal_entry', '$jenis_surat', '$asal_surat', '$keterangan', '$tag', '$dokumen')";
 
     mysqli_query($connect, $query);
 
     return mysqli_affected_rows($connect);
+}
+
+
+function upload() {
+    $nama_file = $_FILES['dokumen']['name'];
+    $ukuran_file = $_FILES['dokumen']['size'];
+    $error = $_FILES['dokumen']['error'];
+    $tmp_name = $_FILES['dokumen']['tmp_name'];
+
+    if ($error === 4) {
+        echo "
+            <script>
+                alert('Pilih dokumen terlebih dahulu!');
+            </script>
+        ";
+        return false;
+    }
+
+    $ekstensi_dokumen_valid = ['doc', 'docx', 'pdf', 'xlsx'];
+    $ekstensi_dokumen = explode('.', $nama_file);
+    $ekstensi_dokumen = strtolower(end($ekstensi_dokumen));
+
+    if (!in_array($ekstensi_dokumen, $ekstensi_dokumen_valid)) {
+        echo "
+            <script>
+                alert('Yang Anda upload bukan dokumen!');
+            </script>
+        ";
+        return false;
+    }
+
+    if ($ukuran_file > 1000000) {
+        echo "
+            <script>
+                alert('Ukuran gambar terlalu besar!');
+            </script>
+        ";
+        return false;
+    }
+
+    $nama_file_baru = uniqid();
+    $nama_file_baru .= '.';
+    $nama_file_baru .= $ekstensi_dokumen;
+
+    move_uploaded_file($tmp_name, 'berkas/'.$nama_file_baru);
+
+    return $nama_file;
 }
 
 
@@ -43,5 +93,39 @@ function delete($id) {
     return mysqli_affected_rows($connect);
 }
 
+function update($data) {
+    global $connect;
+
+    $id = $data["id"];
+    $tanggal_surat = $data["tanggal_surat"];
+    $tanggal_entry = $data["tanggal_entry"];
+    $jenis_surat = htmlspecialchars($data["jenis_surat"]);
+    $asal_surat = htmlspecialchars($data["asal_surat"]);
+    $keterangan = htmlspecialchars($data["keterangan"]);
+    $tag = htmlspecialchars($data["tag"]);
+    $dokumen_lama = $data["dokumen_lama"];
+    
+    if($_FILES['dokumen']['error'] === 4) {
+        $dokumen = $dokumen_lama;
+    } else {
+        $dokumen = upload();
+    }
+
+    $query = "UPDATE surat SET 
+                tanggal_surat = '$tanggal_surat', 
+                tanggal_entry = '$tanggal_entry',
+                jenis_surat = '$jenis_surat',
+                asal_surat = '$asal_surat',
+                keterangan = '$keterangan',
+                tag = '$tag',
+                dokumen = '$dokumen'
+              WHERE id = $id
+            ";
+    
+    mysqli_query($connect, $query);
+
+    return mysqli_affected_rows($connect);
+
+}
 
 ?>
