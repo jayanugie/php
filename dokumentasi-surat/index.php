@@ -4,6 +4,10 @@ require 'functions.php';
 
 $dokumentasi = query("SELECT * FROM surat");
 
+if (isset($_POST["search"])) {
+    $dokumentasi = search($_POST["keyword"]);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +22,12 @@ $dokumentasi = query("SELECT * FROM surat");
     <h1>Dokumentasi Surat</h1>
     <a href="create.php">Tambah Surat</a>
     <br><br>
+
+    <form action="" method="post">
+        <input type="text" name="keyword" size="30" autofocus placeholder="masukkan keyword pencarian...">
+        <button type="submit" name="search">Cari</button>
+    </form>
+    <br>
 
     <table border="1" cellpadding="10" cellspacing="0">
         <tr>

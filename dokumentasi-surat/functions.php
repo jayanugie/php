@@ -125,7 +125,21 @@ function update($data) {
     mysqli_query($connect, $query);
 
     return mysqli_affected_rows($connect);
+}
 
+
+function search($keyword) {
+    $query = "SELECT * FROM surat WHERE 
+                tag LIKE '%$keyword%' OR
+                tanggal_surat LIKE '%$keyword%' OR
+                tanggal_entry LIKE '%$keyword%' OR
+                jenis_surat LIKE '%$keyword%' OR
+                asal_surat LIKE '%$keyword%' OR
+                tag LIKE '%$keyword%' OR
+                dokumen LIKE '%$keyword%' 
+            ";
+
+    return query($query);
 }
 
 ?>
