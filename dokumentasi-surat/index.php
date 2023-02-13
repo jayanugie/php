@@ -8,6 +8,8 @@ if (isset($_POST["search"])) {
     $dokumentasi = search($_POST["keyword"]);
 }
 
+$file_url = "http://127.0.0.1/phpdasar/dokumentasi-surat/berkas/";
+
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +54,10 @@ if (isset($_POST["search"])) {
             <td><?= $row["asal_surat"]; ?></td>
             <td><?= $row["keterangan"]; ?></td>
             <td><?= $row["tag"]; ?></td>
-            <td><?= $row["dokumen"]; ?></td>
+            <td>
+                <a href="./berkas/<?= $row["dokumen"] ?> ">Download</a> | 
+                <a href="https://docs.google.com/viewer?url=<?= $file_url.$row['dokumen'] ?>" target="_blank">Preview</a>
+            </td>
             <td>
                 <a href="delete.php?id=<?= $row["id"]; ?>" onclick="return confirm('yakin?')">hapus</a> |
                 <a href="update.php?id=<?= $row["id"]; ?>">ubah</a>

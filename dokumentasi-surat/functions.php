@@ -82,16 +82,20 @@ function upload() {
 
     move_uploaded_file($tmp_name, 'berkas/'.$nama_file_baru);
 
-    return $nama_file;
+    return $nama_file_baru;
 }
 
 
 function delete($id) {
     global $connect;
-    mysqli_query($connect, "DELETE FROM surat WHERE id = $id");
+    $file = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM surat WHERE id = '$id' "));
+
+    unlink('berkas/'.$file["dokumen"]);
+    mysqli_query($connect, "DELETE FROM surat WHERE id='$id' ");
 
     return mysqli_affected_rows($connect);
 }
+
 
 function update($data) {
     global $connect;
@@ -104,10 +108,11 @@ function update($data) {
     $keterangan = htmlspecialchars($data["keterangan"]);
     $tag = htmlspecialchars($data["tag"]);
     $dokumen_lama = $data["dokumen_lama"];
-    
+
     if($_FILES['dokumen']['error'] === 4) {
         $dokumen = $dokumen_lama;
     } else {
+        unlink('berkas/'.$dokumen_lama);
         $dokumen = upload();
     }
 
