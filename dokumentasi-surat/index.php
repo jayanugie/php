@@ -1,3 +1,11 @@
+<?php 
+
+require 'functions.php';
+
+$dokumentasi = query("SELECT * FROM surat");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,26 +21,35 @@
 
     <table border="1" cellpadding="10" cellspacing="0">
         <tr>
+            <th>No.</th>
             <th>Tanggal Surat</th>
             <th>Tanggal Entry</th>
             <th>Jenis Surat</th>
             <th>Asal Surat</th>
             <th>Keterangan</th>
             <th>Tag</th>
-            <th>Upload Surat</th>
+            <th>Dokumen</th>
+            <th>Aksi</th>
         </tr>
+
+        <?php $i = 1 ?>
+        <?php foreach($dokumentasi as $row) : ?>
         <tr>
-            <td>1</td>
-            <td>Lorem</td>
-            <td>Lorem</td>
-            <td>Lorem</td>
-            <td>Lorem</td>
-            <td>Lorem</td>
-            <td>Lorem</td>
+            <td><?= $i ?></td>
+            <td><?= $row["tanggal_surat"]; ?></td>
+            <td><?= $row["tanggal_entry"]; ?></td>
+            <td><?= $row["jenis_surat"]; ?></td>
+            <td><?= $row["asal_surat"]; ?></td>
+            <td><?= $row["keterangan"]; ?></td>
+            <td><?= $row["tag"]; ?></td>
+            <td><?= $row["dokumen"]; ?></td>
+            <td>
+                <a href="delete.php?id=<?= $row["id"]; ?>" onclick="return confirm('yakin?')">hapus</a>
+            </td>
         </tr>
-
-    </table>
-
-    
+        <?php $i++ ?>
+        <?php endforeach; ?>
+                
+    </table>    
 </body>
 </html>
