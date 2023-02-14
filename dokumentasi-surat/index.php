@@ -30,9 +30,9 @@ $file_url = "http://127.0.0.1/phpdasar/dokumentasi-surat/berkas/";
             </div>
             <div class="col-md-6 p-4">
                 <div class="d-flex gap-4 justify-content-end">
-                    <a href="create.php" class="text-light text-decoration-none p-2">+Tambah</a>
+                    <a href="create.php" class="text-light text-decoration-none p-2"><img src="./assets/img/plus.png" alt="plus"></a>
                     <form action="" method="post" class="d-flex gap-2">
-                        <input type="text" name="keyword" size="30" autofocus placeholder="masukkan keyword pencarian..." class="form-control">
+                        <input type="text" name="keyword" size="30" autofocus placeholder="Masukkan keyword pencarian..." class="form-control">
                         <button type="submit" name="search" class="btn btn-light btn-sm">Cari</button>
                     </form>
                 </div>
