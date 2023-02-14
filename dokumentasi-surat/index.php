@@ -24,7 +24,7 @@ $file_url = "http://127.0.0.1/phpdasar/dokumentasi-surat/berkas/";
 </head>
 <body>
     <div class="container">
-        <div class="row bg-success shadow-lg">
+        <div class="row bg-success shadow-lg rounded-bottom-2">
             <div class="col-md-6 p-4 text-light">
                 <h4>Dokumentasi Surat</h4>
             </div>
