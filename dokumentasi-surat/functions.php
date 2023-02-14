@@ -140,7 +140,7 @@ function search($keyword) {
                 tanggal_entry LIKE '%$keyword%' OR
                 jenis_surat LIKE '%$keyword%' OR
                 asal_surat LIKE '%$keyword%' OR
-                tag LIKE '%$keyword%' OR
+                keterangan LIKE '%$keyword%' OR
                 dokumen LIKE '%$keyword%' 
             ";
 
