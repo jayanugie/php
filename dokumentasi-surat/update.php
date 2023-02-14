@@ -11,14 +11,14 @@ if (isset($_POST["submit"])) {
     if(update($_POST) > 0) {
         echo "
             <script>
-                alert('data berhasil diubah!');
+                alert('Surat berhasil diubah.');
                 document.location.href = 'index.php';
             </script>
         ";
     } else {
         echo "
             <script>
-                alert('data gagal diubah!');
+                alert('Surat gagal diubah.');
                 document.location.href = 'index.php';
             </script>
         ";

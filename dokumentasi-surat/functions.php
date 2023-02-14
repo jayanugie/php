@@ -48,29 +48,29 @@ function upload() {
     if ($error === 4) {
         echo "
             <script>
-                alert('Pilih dokumen terlebih dahulu!');
+                alert('Pilih dokumen terlebih dahulu.');
             </script>
         ";
         return false;
     }
 
-    $ekstensi_dokumen_valid = ['doc', 'docx', 'pdf', 'xlsx'];
+    $ekstensi_dokumen_valid = ['doc', 'docx', 'pdf', 'xls', 'xlsx', 'ppt', 'pptx'];
     $ekstensi_dokumen = explode('.', $nama_file);
     $ekstensi_dokumen = strtolower(end($ekstensi_dokumen));
 
     if (!in_array($ekstensi_dokumen, $ekstensi_dokumen_valid)) {
         echo "
             <script>
-                alert('Yang Anda upload bukan dokumen!');
+                alert('Yang Anda upload bukan dokumen.');
             </script>
         ";
         return false;
     }
 
-    if ($ukuran_file > 1000000) {
+    if ($ukuran_file > 1500000) {
         echo "
             <script>
-                alert('Ukuran gambar terlalu besar!');
+                alert('Ukuran dokumen terlalu besar. Maksimal ukuran 1.5MB. ');
             </script>
         ";
         return false;

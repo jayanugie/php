@@ -7,14 +7,14 @@ if (isset($_POST["submit"])) {
     if(create($_POST) > 0) {
         echo "
             <script>
-                alert('dokumen berhasil ditambahkan!');
+                alert('Surat berhasil ditambahkan.');
                 document.location.href = 'index.php';
             </script>
         ";
     } else {
         echo "
             <script>
-                alert('dokumen gagal ditambahkan!');
+                alert('Surat gagal ditambahkan.');
                 document.location.href = 'index.php';
             </script>
         ";

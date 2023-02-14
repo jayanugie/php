@@ -75,7 +75,7 @@ $file_url = "http://127.0.0.1/phpdasar/dokumentasi-surat/berkas/";
                     <td>
                         <div class="d-flex justify-content-evenly">
                             <a href="update.php?id=<?= $row["id"]; ?>"><img src="./assets/img/edit.png" alt="edit" width="25"></a>
-                            <a href="delete.php?id=<?= $row["id"]; ?>" onclick="return confirm('yakin?')"><img src="./assets/img/trash.png" alt="delete" width="25"></a>
+                            <a href="delete.php?id=<?= $row["id"]; ?>" onclick="return confirm('Anda yakin ingin menghapus surat ini?')"><img src="./assets/img/trash.png" alt="delete" width="25"></a>
                         </div>
                     </td>
                 </tr>
