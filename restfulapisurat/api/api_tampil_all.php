@@ -1,13 +1,15 @@
 <?php 
     require_once('../config/koneksi_db.php');
-    
-    $myArray = array();
+    header('Content-Type: application/json; charset=utf8');
 
-    if ($result = mysqli_query($conn, "SELECT * FROM surat")) {
-        while ($row = $result->fetch_array(MYSQLI_ASSOC)){
-            $myArray[] = $row;
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        
+        $sql = 'SELECT * FROM surat';
+        $query = mysqli_query($conn, $sql);
+        $array_data = array();
+        while($data = mysqli_fetch_assoc($query)) {
+            $array_data[] = $data;
         }
-        mysqli_close($conn);
-        echo json_encode($myArray); 
+        echo json_encode($array_data);
     }
 ?>
