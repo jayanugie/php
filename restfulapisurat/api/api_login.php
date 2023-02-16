@@ -1,5 +1,6 @@
 <?php
     require_once('../config/koneksi_db.php');
+    header("Access-Control-Allow-Origin: *");
     header('Content-Type: application/json; charset=utf8');
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
