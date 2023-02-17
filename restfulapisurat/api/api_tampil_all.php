@@ -9,10 +9,6 @@
         $query = mysqli_query($conn, $sql);
         $array_data = array();
         while($data = mysqli_fetch_assoc($query)) {
-            $filePath = "../files/" . $data['file'];
-            if (file_exists($filePath)) {
-                $data['filePath'] = $filePath;
-            }
             $array_data[] = $data;
         }
         echo json_encode($array_data);
