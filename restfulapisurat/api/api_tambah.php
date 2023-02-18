@@ -18,22 +18,25 @@
             $error = $_FILES['dokumen']['error'];
             $tmp_name = $_FILES['dokumen']['tmp_name'];
         
-            if ($error === 4) {
-                echo "PILIH DOKUMEN TERLEBIH DULU";
-                return false;
-            }
-        
             $ekstensi_dokumen_valid = ['doc', 'docx', 'pdf', 'xls', 'xlsx', 'ppt', 'pptx'];
             $ekstensi_dokumen = explode('.', $nama_file);
             $ekstensi_dokumen = strtolower(end($ekstensi_dokumen));
         
             if (!in_array($ekstensi_dokumen, $ekstensi_dokumen_valid)) {
-                echo "YANG ANDA UPLOAD BUKAN DOKUMEN";
+                $data = [
+                    'status' => 'FAILED',
+                    'message' => 'Yang Anda upload bukan dokumen.'
+                ];
+                echo json_encode([$data]);    
                 return false;
             }
         
             if ($ukuran_file > 1500000) {
-                echo "UKURAN DOKUMEN TERLALU BESAR, MAKSIMAL 1.5MB";
+                $data = [
+                    'status' => 'FAILED',
+                    'message' => 'Ukuran dokumen terlalu besar, maksimal 1.5MB.'
+                ];
+                echo json_encode([$data]);    
                 return false;
             }
         
@@ -49,12 +52,14 @@
 
         if ($query) {
             $data = [
-                'status' => 'SUCCESS'
+                'status' => 'SUCCESS',
+                'message' => 'Surat berhasil ditambahkan.'
             ];
             echo json_encode([$data]);
         } else {
             $data = [
-                'status' => 'FAILED'
+                'status' => 'FAILED',
+                'message' => 'Surat gagal ditambahkan.'
             ];
             echo json_encode([$data]);
         }
