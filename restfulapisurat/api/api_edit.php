@@ -20,9 +20,12 @@
         $row = $result->fetch_assoc();
         $old_file_name = $row['dokumen'];
 
+        if($_FILES['dokumen']['error'] === 4) {
+            $dokumen = $old_file_name;
+        } else {
 
             // DOKUMEN
-            $nama_file = $_FILES['dokumen']['name'];
+            $nama_file = $_FILES['dokumen']['name'];    
             $ukuran_file = $_FILES['dokumen']['size'];
             $error = $_FILES['dokumen']['error'];
             $tmp_name = $_FILES['dokumen']['tmp_name'];
@@ -49,9 +52,13 @@
             $nama_file_baru = uniqid();
             $nama_file_baru .= '.';
             $nama_file_baru .= $ekstensi_dokumen;
+            $dokumen = $nama_file_baru;
 
-            move_uploaded_file($tmp_name, '../files/'.$nama_file_baru);
+            unlink('../files/'.$old_file_name);
+    
+            move_uploaded_file($tmp_name, '../files/'.$dokumen);
 
+        }
 
         $sql = "UPDATE surat SET 
                     tanggal_surat = '$tanggal_surat',
@@ -60,14 +67,13 @@
                     asal_surat = '$asal_surat',
                     keterangan = '$keterangan',
                     tag = '$tag',
-                    dokumen = '$nama_file_baru'
+                    dokumen = '$dokumen'
                 WHERE id = $id";
 
         if ($conn->query($sql) === TRUE) {
-            unlink('../files/'.$old_file_name);
             $response = array(
                 'status' => true,
-                'message' => 'Data berhasil diupdate'
+                'message' => 'Data berhasil diupdate.'
             );
         } else {
             $response = array(
