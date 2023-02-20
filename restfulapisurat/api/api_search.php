@@ -29,4 +29,8 @@
 
     // Mengubah array menjadi format JSON dan mengirimkan sebagai response API
     echo json_encode($search_results);
+
+    // menutup koneksi ke database
+    mysqli_close($conn);
+
 ?>

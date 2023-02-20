@@ -12,7 +12,8 @@
             while ($row = $result -> fetch_array(MYSQLI_ASSOC)) {
                 $myArray[] = $row;
             }
-            mysqli_close($conn);
+            mysqli_free_result($result); // Membebaskan result set
+            mysqli_close($conn); // Menutup koneksi ke database
             echo json_encode($myArray);
         }
     }

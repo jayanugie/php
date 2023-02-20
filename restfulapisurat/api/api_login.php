@@ -39,6 +39,7 @@
             );
             echo json_encode($response);
         }
+        $conn->close();
     } else {
         // request tidak valid, kembalikan response
         $response = array(
@@ -46,5 +47,7 @@
             'message' => 'Invalid Request'
         );
         echo json_encode($response);
+        
+        $conn->close();
     }
 ?>

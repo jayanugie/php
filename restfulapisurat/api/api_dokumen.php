@@ -22,5 +22,7 @@
                 echo "File not found.";
             }
         }
+
+        $conn->close();
     }
 ?>

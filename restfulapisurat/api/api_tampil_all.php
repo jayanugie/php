@@ -12,5 +12,7 @@
             $array_data[] = $data;
         }
         echo json_encode($array_data);
+
+        mysqli_close($conn);
     }
 ?>
