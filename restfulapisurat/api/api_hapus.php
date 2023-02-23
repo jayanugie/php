@@ -11,7 +11,6 @@
         $sql = "DELETE FROM surat WHERE id = '$id' ";
 
         $file = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM surat WHERE id = '$id' "));
-        unlink('../files/'.$file["dokumen"]);
 
         $query = mysqli_query($conn, $sql);
 
