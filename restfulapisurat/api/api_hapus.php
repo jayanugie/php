@@ -12,6 +12,28 @@
 
         $file = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM surat WHERE id = '$id' "));
 
+
+        function deleteDirectory($dir) {
+            if (!file_exists($dir)) {
+                return true;
+            }
+            if (!is_dir($dir)) {
+                return unlink($dir);
+            }
+            foreach (scandir($dir) as $item) {
+                if ($item == '.' || $item == '..') {
+                    continue;
+                }
+                if (!deleteDirectory($dir . DIRECTORY_SEPARATOR . $item)) {
+                    return false;
+                }
+            }
+            return rmdir($dir);
+        }
+
+        $dir = '../files/'.$file["id"]; 
+        deleteDirectory($dir);
+        
         $query = mysqli_query($conn, $sql);
 
         mysqli_close($conn);
