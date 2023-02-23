@@ -1,5 +1,7 @@
 <?php
     require_once('../../config/koneksi_db.php');
+    header("Access-Control-Allow-Origin: *");
+    header('Content-Type: application/json; charset=utf8');
 
     //membuat response array
     $response = array();

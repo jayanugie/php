@@ -1,6 +1,9 @@
 <?php 
 
 require_once('../../config/koneksi_db.php');
+header("Access-Control-Allow-Origin: *");
+header('Content-Type: application/json; charset=utf8');
+
 
 // Mendapatkan id_surat dari parameter GET
 $id_surat = $_GET['id_surat'];
