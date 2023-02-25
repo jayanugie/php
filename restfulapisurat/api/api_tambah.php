@@ -17,9 +17,11 @@
         $query = mysqli_query($conn, $sql);
 
         if ($query) {
+            $id = mysqli_insert_id($conn);
             $data = [
                 'status' => 'SUCCESS',
-                'message' => 'Surat berhasil ditambahkan.'
+                'message' => 'Surat berhasil ditambahkan.',
+                'id' => $id
             ];
             echo json_encode([$data]);
         } else {
