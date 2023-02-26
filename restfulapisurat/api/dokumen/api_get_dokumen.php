@@ -9,7 +9,7 @@ header('Content-Type: application/json; charset=utf8');
 $id_surat = $_GET['id_surat'];
 
 // Query untuk mendapatkan data dokumen dari database
-$query = "SELECT nama_file, tipe_file, ukuran_file, path_file FROM dokumen WHERE id_surat = '$id_surat'";
+$query = "SELECT id_surat, nama_file, tipe_file, ukuran_file, path_file FROM dokumen WHERE id_surat = '$id_surat'";
 $result = mysqli_query($conn, $query);
 
 if (mysqli_num_rows($result) > 0) {
